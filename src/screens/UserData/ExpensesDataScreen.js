@@ -19,7 +19,7 @@ const ExpensesDataScreen = ({navigation}) => {
       setIsValid(false);
     } else {
       setIsValid(true);
-      navigation.navigate(RouteName.EXPENSE_DATA_SCREEN);
+      navigation.navigate(RouteName.RESULT_SCREEN);
     }
   }
 

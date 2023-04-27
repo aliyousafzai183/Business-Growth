@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RouteName from './RouteName';
+import colors from '../themes/colors';
 // screens
 import EmployeeData from '../screens/UserData/EmployeeData';
 import ExpensesDataScreen from '../screens/UserData/ExpensesDataScreen';
@@ -10,6 +11,7 @@ import ResultScreen from '../screens/UserData/ResultScreen';
 import RevenueDataScreen from '../screens/UserData/RevenueDataScreen';
 import YourNameScreen from '../screens/UserData/YourNameScreen';
 import SplashScreen from '../screens/SplashScreen';
+import TipDetailScreen from '../screens/TipDetailScreen';
 
 import SideNavigator from './SideNavigator';
 const Stack = createNativeStackNavigator();
@@ -17,7 +19,15 @@ const Stack = createNativeStackNavigator();
 const RootNavigator = () => {
     return (
         <NavigationContainer >
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false,
+                    headerStyle: {
+                        backgroundColor: colors.top
+                    },
+                    headerTintColor: colors.text
+                }}
+            >
 
                 <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} />
                 <Stack.Screen name={RouteName.YOUR_NAME_SCREEN} component={YourNameScreen} />
@@ -27,6 +37,14 @@ const RootNavigator = () => {
                 <Stack.Screen name={RouteName.EXPENSE_DATA_SCREEN} component={ExpensesDataScreen} />
                 <Stack.Screen name={RouteName.RESULT_SCREEN} component={ResultScreen} />
                 <Stack.Screen name={RouteName.MAIN_HOME_SCREEN} component={SideNavigator} />
+                <Stack.Screen
+                    name={RouteName.TIP_DETAIL_SCREEN}
+                    component={TipDetailScreen}
+                    options={{
+                        headerShown: true,
+                        title: 'Tip Description',
+                    }}
+                />
 
             </Stack.Navigator>
         </NavigationContainer >

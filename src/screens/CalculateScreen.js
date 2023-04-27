@@ -29,7 +29,7 @@ const CalculateScreen = ({ navigation }) => {
     <LinearGradient colors={[colors.top, colors.center, colors.bottom]} style={styles.gradient}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>Rehman Plaza</Text>
+          <Text style={styles.title}>Business Growth</Text>
         </View>
         <View style={styles.formContainer}>
           <Text style={styles.inputLabel}>Monthly Revenue:</Text>
@@ -37,11 +37,13 @@ const CalculateScreen = ({ navigation }) => {
             style={styles.textInput}
             placeholder="Revenue"
             keyboardType="numeric"
+            placeholderTextColor={colors.center}
             value={revenue}
             onChangeText={(text) => setRevenue(text)}
-          />
+            />
           <Text style={{ ...styles.inputLabel, marginTop: 20 }}>Monthly Expenses:</Text>
           <TextInput
+            placeholderTextColor={colors.center}
             style={styles.textInput}
             placeholder="Expenses"
             keyboardType="numeric"

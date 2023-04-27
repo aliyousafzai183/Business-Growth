@@ -12,5 +12,6 @@ const RouteName = {
     REVENUE_DATA_SCREEN: 'revenuedatascreen',
     EXPENSE_DATA_SCREEN: 'expesedatascreen',
     RESULT_SCREEN: 'resultscreen',
+    TIP_DETAIL_SCREEN: 'tipdetailscreen',
 }
 export default RouteName;

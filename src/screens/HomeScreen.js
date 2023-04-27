@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Alert, BackHandler, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Alert, BackHandler, ScrollView, StyleSheet, TouchableOpacity, ToastAndroid } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -9,6 +9,7 @@ import RouteName from '../routes/RouteName';
 
 const HomeScreen = ({ navigation }) => {
   const [quotes, setQuotes] = useState([]);
+  const [internet, setInternet] = useState(false);
 
   useEffect(() => {
     // add event listener for back button press
@@ -18,6 +19,7 @@ const HomeScreen = ({ navigation }) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
     }
+
   }, []);
 
   useEffect(() => {
@@ -26,16 +28,18 @@ const HomeScreen = ({ navigation }) => {
       axios.get(`https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=${lang}`)
         .then(response => {
           setQuotes([response.data]);
+          setInternet(true);
         })
         .catch(error => {
-          console.log(error);
+          setInternet(false);
+          ToastAndroid.show(error.message, ToastAndroid.SHORT);
         });
+
     }, 5000);
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
-
 
   const handleBackPress = () => {
     Alert.alert(
@@ -52,15 +56,15 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <LinearGradient colors={[colors.top, colors.center, colors.bottom]} style={styles.container}>
-      <View style={styles.sliderContainer}>
-        {quotes.map((quote, index) => (
-          <TouchableOpacity key={index} style={styles.slide}>
+      {internet && quotes.map((quote, index) => (
+        <View style={styles.sliderContainer} key={index}>
+          <TouchableOpacity style={styles.slide}>
             <MaterialCommunityIcons name="comment-quote-outline" size={30} color={colors.text} style={styles.quoteIcon} />
             <Text style={styles.quoteText}>{quote.quoteText}</Text>
             <Text style={styles.authorText}>- {quote.quoteAuthor}</Text>
           </TouchableOpacity>
-        ))}
-      </View>
+        </View>
+      ))}
       <TouchableOpacity
         onPress={() => navigation.navigate(RouteName.TIPS_SCREEN, { category: 0 })}
         style={styles.mainSectionContainer}
@@ -179,7 +183,6 @@ const styles = StyleSheet.create({
     height: 200,
     marginTop: 20,
     marginBottom: 10,
-    // backgroundColor: colors.center,
     borderRadius: 20,
     paddingHorizontal: 10
   },
@@ -217,14 +220,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: colors.top,
     padding: 15,
-    borderRadius: 30,
+    borderRadius: 50,
     alignItems: 'center',
+    justifyContent:'center',
+    width:'50%',
+    alignSelf:'center'
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 18,
     color: colors.text,
-    marginBottom: 10,
   },
   listTitle: {
     fontSize: 17,

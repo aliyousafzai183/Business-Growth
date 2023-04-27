@@ -15,7 +15,7 @@ const OrganizationNameScreen = ({navigation}) => {
   }
 
   const handleNextPress = () => {
-    if (name.trim().length === 0) {
+    if (name.trim().length < 3) {
       setIsValid(false);
     } else {
       setIsValid(true);

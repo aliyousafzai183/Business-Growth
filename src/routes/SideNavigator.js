@@ -88,10 +88,10 @@ const SideNavigator = () => {
           backgroundColor: colors.top,
         },
         drawerStyle: {
-          backgroundColor: colors.bottom,
+          backgroundColor: colors.center,
         },
         drawerInactiveTintColor: colors.text,
-        drawerActiveBackgroundColor: colors.center,
+        drawerActiveBackgroundColor: colors.top,
         drawerActiveTintColor: colors.text,
         headerLeft: () => <MyHeader />,
       }}

@@ -28,11 +28,8 @@ const ExpensesDataScreen = ({route, navigation}) => {
     const isCompanyGood = isCompanyDoingWell(isRevenue, expenses);
 
     setIsValid(validExpenses);
-    console.log(isRevenue);
-    console.log(expenses);
-    console.log(isCompanyGood);
     if(isValid){
-      navigation.navigate(RouteName.RESULT_SCREEN, { isSuccess: isCompanyGood, parent: true });
+      navigation.replace(RouteName.RESULT_SCREEN, { isSuccess: isCompanyGood, parent: true });
     }
   }
 

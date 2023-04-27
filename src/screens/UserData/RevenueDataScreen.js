@@ -20,7 +20,7 @@ const RevenueDataScreen = ({route, navigation}) => {
       setIsValid(false);
     } else {
       setIsValid(true);
-      navigation.navigate(RouteName.EXPENSE_DATA_SCREEN, {isRevenue: revenue});
+      navigation.replace(RouteName.EXPENSE_DATA_SCREEN, {isRevenue: revenue});
     }
   }
 

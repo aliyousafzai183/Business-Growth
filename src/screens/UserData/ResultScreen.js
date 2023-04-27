@@ -7,6 +7,7 @@ import RouteName from '../../routes/RouteName';
 
 const ResultScreen = ({ route, navigation }) => {
   const { isSuccess } = route.params;
+  const { parent } = route.params;
 
   const handleButtonPress = () => {
     navigation.replace(RouteName.MAIN_HOME_SCREEN);
@@ -16,14 +17,19 @@ const ResultScreen = ({ route, navigation }) => {
     <LinearGradient colors={[colors.top, colors.center, colors.bottom]} style={styles.container}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <MaterialIcons name={isSuccess ? 'check-circle' : 'error'} size={150} color={isSuccess? colors.center : colors.error} />
+          <MaterialIcons name={isSuccess ? 'check-circle' : 'error'} size={150} color={isSuccess ? colors.top : colors.error} />
         </View>
-        <Text style={[styles.title,{color: isSuccess ? colors.buttonBackground : colors.error}]}>{isSuccess ? 'Your business is running well!' : 'Your business is not running well.'}</Text>
-        <Text style={styles.subTitle}>{isSuccess ? 'Let`s improve your business more and more to increase revenue and decrease expenses' : 'Let`s try to recover your loss and increase you revenue'}</Text>
+        <Text style={[styles.title, { color: isSuccess ? colors.buttonBackground : colors.error }]}>{isSuccess ? 'Your business is running well!' : 'Your business is not running well.'}</Text>
+        {parent
+          ?
+          <Text style={styles.subTitle}>{isSuccess ? 'Let`s improve your business more and more to increase revenue and decrease expenses' : 'Let`s try to recover your loss and increase you revenue'}</Text>
+          :
+          <Text style={styles.subTitle}>{isSuccess ? 'Good Job! Your business is doing well! Keep following our tips to grow your business more' : 'Don`t be sad. Try following our new tips to grow your business'}</Text>
+        }
         <View style={styles.buttonContainer}>
 
-        <TouchableOpacity style={[styles.button,{backgroundColor: isSuccess ? colors.buttonBackground : colors.error}]} onPress={handleButtonPress}>
-            <Text style={styles.buttonText}>Let's start</Text>
+          <TouchableOpacity style={[styles.button, { backgroundColor: isSuccess ? colors.buttonBackground : colors.error }]} onPress={handleButtonPress}>
+            <Text style={styles.buttonText}>{parent? "Let's start" : 'Continue to app'}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
     color: colors.text,
     textAlign: 'center',
     marginTop: 40,
-    width:'80%'
+    width: '80%'
   },
 
   button: {

@@ -5,9 +5,10 @@ import RouteName from '../../routes/RouteName';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../themes/colors';
 
-const RevenueDataScreen = ({navigation}) => {
+const RevenueDataScreen = ({route, navigation}) => {
   const [revenue, setRevenue] = useState('');
   const [isValid, setIsValid] = useState(true);
+
 
   const handleRevenueChange = (text) => {
     setRevenue(text);
@@ -19,7 +20,7 @@ const RevenueDataScreen = ({navigation}) => {
       setIsValid(false);
     } else {
       setIsValid(true);
-      navigation.replace(RouteName.EXPENSE_DATA_SCREEN);
+      navigation.navigate(RouteName.EXPENSE_DATA_SCREEN, {isRevenue: revenue});
     }
   }
 

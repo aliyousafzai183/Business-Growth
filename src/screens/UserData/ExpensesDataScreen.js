@@ -5,9 +5,18 @@ import RouteName from '../../routes/RouteName';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../themes/colors';
 
-const ExpensesDataScreen = ({navigation}) => {
+const ExpensesDataScreen = ({route, navigation}) => {
   const [expenses, setExpenses] = useState('');
   const [isValid, setIsValid] = useState(true);
+  const { isRevenue } = route.params;
+
+  const isCompanyDoingWell = (revenue, expenses) => {
+    if (Number(revenue) > Number(expenses)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const handleExpensesChange = (text) => {
     setExpenses(text);
@@ -15,11 +24,15 @@ const ExpensesDataScreen = ({navigation}) => {
   }
 
   const handleNextPress = () => {
-    if (expenses.trim().length === 0) {
-      setIsValid(false);
-    } else {
-      setIsValid(true);
-      navigation.replace(RouteName.RESULT_SCREEN, { isSuccess: false });
+    const validExpenses = expenses.trim().length > 0;
+    const isCompanyGood = isCompanyDoingWell(isRevenue, expenses);
+
+    setIsValid(validExpenses);
+    console.log(isRevenue);
+    console.log(expenses);
+    console.log(isCompanyGood);
+    if(isValid){
+      navigation.navigate(RouteName.RESULT_SCREEN, { isSuccess: isCompanyGood, parent: true });
     }
   }
 

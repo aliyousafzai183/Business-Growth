@@ -4,7 +4,7 @@ const colors = {
     bottom: '#a2bce0',
     text: '#fff',
     buttonBackground: '#004aad',
-    error: '#ef233c',
+    error: '#b82537',
     placeholderColor: '#9da3b4'
 };
 

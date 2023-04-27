@@ -17,7 +17,7 @@ const EmployeeData = ({ navigation }) => {
 
   const handleNextPress = () => {
     if (isValid) {
-      navigation.navigate(RouteName.REVENUE_DATA_SCREEN);
+      navigation.replace(RouteName.REVENUE_DATA_SCREEN);
     }
   }
 
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   iconContainer: {
-    backgroundColor: colors.buttonBackground,
+    backgroundColor: colors.bottom,
     padding: 20,
     borderRadius: 50,
     marginBottom: 30,
@@ -98,7 +98,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 20,
     height: 50,
+    width: '100%',
+    alignSelf: 'center',
+    color: colors.buttonBackground,
   },
+
   error: {
     color: colors.error,
     fontSize: 14,

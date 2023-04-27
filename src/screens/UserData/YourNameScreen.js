@@ -19,7 +19,7 @@ const YourNameScreen = ({navigation}) => {
       setIsValid(false);
     } else {
       setIsValid(true);
-      navigation.navigate(RouteName.ORGANIZATION_NAME_SCREEN);
+      navigation.replace(RouteName.ORGANIZATION_NAME_SCREEN);
     }
   }
 
@@ -61,7 +61,6 @@ const YourNameScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#2b2d42',
   },
   titleContainer: {
     marginTop: 50,
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   iconContainer: {
-    backgroundColor: colors.buttonBackground,
+    backgroundColor: colors.bottom,
     padding: 20,
     borderRadius: 50,
     marginBottom: 30,
@@ -98,6 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 20,
     height: 50,
+    color: colors.buttonBackground
   },
   error: {
     color: colors.error,

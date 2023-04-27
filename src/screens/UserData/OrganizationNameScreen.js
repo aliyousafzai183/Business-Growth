@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/Octicons';
 import RouteName from '../../routes/RouteName';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../themes/colors';
@@ -19,7 +19,7 @@ const OrganizationNameScreen = ({navigation}) => {
       setIsValid(false);
     } else {
       setIsValid(true);
-      navigation.navigate(RouteName.EMPLOYEE_DATA_SCREEN);
+      navigation.replace(RouteName.EMPLOYEE_DATA_SCREEN);
     }
   }
 
@@ -32,7 +32,7 @@ const OrganizationNameScreen = ({navigation}) => {
       </View>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <AntDesign name="user" size={30} color={colors.text} />
+          <AntDesign name="organization" size={30} color={colors.text} />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>What's your business name?</Text>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   iconContainer: {
-    backgroundColor: colors.buttonBackground,
+    backgroundColor: colors.bottom,
     padding: 20,
     borderRadius: 50,
     marginBottom: 30,
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 20,
     height: 50,
+    color: colors.buttonBackground
   },
   error: {
     color: colors.error,

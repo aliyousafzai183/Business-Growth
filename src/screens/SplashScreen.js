@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import RouteName from '../routes/RouteName';
 import colors from '../themes/colors';
 import LinearGradient from 'react-native-linear-gradient';
+import styles from '../styles/SplashScreenstyles';
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
@@ -20,27 +21,5 @@ const SplashScreen = ({ navigation }) => {
     </LinearGradient>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoContainer: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-  },
-  text: {
-    marginBottom: 50,
-    fontSize: 24,
-    color: colors.text,
-  },
-});
 
 export default SplashScreen;

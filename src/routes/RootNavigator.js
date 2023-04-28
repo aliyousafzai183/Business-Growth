@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RouteName from './RouteName';
@@ -36,15 +36,6 @@ const RootNavigator = () => {
         }
         checkOnboardingStatus();
     }, []);
-
-    const handleOnboardingComplete = async () => {
-        try {
-            await AsyncStorage.setItem('@app:onboarding', 'true');
-            setShowOnboarding(false);
-        } catch (error) {
-            // Handle error
-        }
-    };
 
     if (showOnboarding) {
         return (
@@ -95,12 +86,7 @@ const RootNavigator = () => {
             >
 
                 <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SecondSplashScreen} />
-                {/* <Stack.Screen name={RouteName.YOUR_NAME_SCREEN} component={YourNameScreen} />
-                <Stack.Screen name={RouteName.ORGANIZATION_NAME_SCREEN} component={OrganizationNameScreen} />
-                <Stack.Screen name={RouteName.EMPLOYEE_DATA_SCREEN} component={EmployeeData} />
-                <Stack.Screen name={RouteName.REVENUE_DATA_SCREEN} component={RevenueDataScreen} />
-                <Stack.Screen name={RouteName.EXPENSE_DATA_SCREEN} component={ExpensesDataScreen} />
-                <Stack.Screen name={RouteName.RESULT_SCREEN} component={ResultScreen} /> */}
+                <Stack.Screen name={RouteName.RESULT_SCREEN} component={ResultScreen} />
                 <Stack.Screen name={RouteName.MAIN_HOME_SCREEN} component={SideNavigator} />
                 <Stack.Screen
                     name={RouteName.TIP_DETAIL_SCREEN}

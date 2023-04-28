@@ -4,7 +4,6 @@ import RouteName from './RouteName';
 import HomeScreen from '../screens/HomeScreen';
 import CalculateScreen from '../screens/CalculateScreen';
 import QuoteScreen from '../screens/QuoteScreen';
-import SettingScreen from '../screens/SettingScreen';
 import TipsScreen from '../screens/TipsScreen';
 
 // icons
@@ -132,15 +131,6 @@ const SideNavigator = () => {
           title: 'Progress Calculator',
           headerTitle: () => getHeaderIcon(RouteName.CALCULATE_SCREEN),
           drawerIcon: ({ color, size }) => getIcon(RouteName.CALCULATE_SCREEN),
-        }}
-      />
-      <Drawer.Screen
-        name={RouteName.SETTING_SCREEN}
-        component={SettingScreen}
-        options={{
-          title: 'Settings',
-          headerTitle: () => getHeaderIcon(RouteName.SETTING_SCREEN),
-          drawerIcon: ({ color, size }) => getIcon(RouteName.SETTING_SCREEN),
         }}
       />
     </Drawer.Navigator>

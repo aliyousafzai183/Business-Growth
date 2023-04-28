@@ -4,6 +4,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../themes/colors';
 import RouteName from '../../routes/RouteName';
+import styles from '../../styles/userData/ResultScreenStyles';
+
+// storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ResultScreen = ({ route, navigation }) => {
   const { isSuccess } = route.params;
@@ -11,7 +15,17 @@ const ResultScreen = ({ route, navigation }) => {
 
   const handleButtonPress = () => {
     navigation.replace(RouteName.MAIN_HOME_SCREEN);
+    handleOnboardingComplete();
   };
+
+  const handleOnboardingComplete = async () => {
+    try {
+        await AsyncStorage.setItem('@app:onboarding', 'true');
+        setShowOnboarding(false);
+    } catch (error) {
+        // Handle error
+    }
+};
 
   return (
     <LinearGradient colors={[colors.top, colors.center, colors.bottom]} style={styles.container}>
@@ -38,53 +52,3 @@ const ResultScreen = ({ route, navigation }) => {
 };
 
 export default ResultScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.text,
-    textAlign: 'center',
-    marginTop: 40,
-  },
-
-  subTitle: {
-    fontSize: 18,
-    color: colors.text,
-    textAlign: 'center',
-    marginTop: 40,
-    width: '80%'
-  },
-
-  button: {
-    borderRadius: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    marginTop: 40,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: colors.text,
-    textAlign: 'center',
-  },
-  iconContainer: {
-    backgroundColor: colors.bottom,
-    paddingHorizontal: 1,
-    borderRadius: 100,
-    marginBottom: 30,
-    paddingVertical: 1,
-  },
-  buttonContainer: {
-    width: '100%',
-    alignItems: 'flex-end',
-  },
-});
